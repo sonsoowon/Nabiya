@@ -31,7 +31,7 @@ urlpatterns = [
     path('mypage/follower', views.list_follower, name='list_follower'), # 나를 팔로우하는 사용자 목록
     path('follow/<int:user_pk>', views.follow, name='follow'), # 다른 사용자 팔로우 버튼 클릭 시 연결
 
-    path('my_post', views.my_posts, name='my_post'), # 내가 쓴 일기 목록
+    path('my_post', views.my_post, name='my_post'), # 내가 쓴 일기 목록
 
     # 검색 아이콘 클릭 시 연결
     path('search_user', views.search_user, name='search_user'),
