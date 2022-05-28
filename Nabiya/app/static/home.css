@@ -1,8 +1,20 @@
+
 * {
-  margin: 0;
-  padding: 0;
+  padding: 0px;
+  margin: 0px;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  font-weight: 500;
   box-sizing: border-box;
-  font-family: "Quicksand", sans-serif;
+  text-decoration: none;
+  color: gray;
+}
+
+body {
+  max-width: 360px;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+
 }
 
 html {
@@ -11,48 +23,74 @@ html {
 
 .container {
   width: 100%;
+  margin: 0 auto;
   height: 100vh;
-  background-color: #12121f;
   color: #eee;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  
+
+
 }
 
+.navbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 2rem 2rem 0 2rem;
+}
+
+.navbar button {
+  padding: .5rem 1rem;
+  margin: 0 .5rem;
+  background-color: white;
+  border: 3px solid #c0c2ff;
+  border-radius: 1rem;
+  color: gray;
+
+}
+
+
 .calendar {
-  width: 45rem;
-  height: 52rem;
-  background-color: #222227;
-  box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+  width: 90%;
+  margin: 3rem auto;
+
 }
 
 .month {
   width: 100%;
-  height: 12rem;
-  background-color: #167e56;
+  height: 10rem;
+  background-color: #c0c2ff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
   text-align: center;
-  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  
 }
 
 .month i {
   font-size: 2.5rem;
   cursor: pointer;
+  color: white;
 }
 
 .month h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   margin-bottom: 1rem;
+  color: white;
 }
 
 .month p {
   font-size: 1.6rem;
+  color: white;
 }
 
 .weekdays {
@@ -67,11 +105,11 @@ html {
   font-size: 1.5rem;
   font-weight: 400;
   letter-spacing: 0.1rem;
+  color: gray;
   width: calc(44.2rem / 7);
   display: flex;
   justify-content: center;
   align-items: center;
-  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 }
 
 .days {
@@ -84,18 +122,17 @@ html {
 .days div {
   font-size: 1.4rem;
   margin: 0.3rem;
+  border-radius: 1rem;
   width: calc(40.2rem / 7);
   height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
   transition: background-color 0.2s;
 }
 
 .days div:hover:not(.today) {
-  background-color: #262626;
-  border: 0.2rem solid #777;
+  background-color: #c0c2ff;
   cursor: pointer;
 }
 
@@ -105,5 +142,5 @@ html {
 }
 
 .today {
-  background-color: #167e56;
+  color: #c0c2ff;
 }
