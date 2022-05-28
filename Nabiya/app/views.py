@@ -9,11 +9,25 @@ def home(request):
     pass
 
 def new_post_0(request):
-    
-def new_post_1(request):
+    if request.method == "POST" :
+        emotion = request.POST["emotion"]
+        new_post = Diary.objects.create(writer=request.user, emotion=emotion, pet=request.pet)
+        return redirect("new_post_1", new_post.pk)
+    return render(request, 'new_post_0.html')
+
+def new_post_1(request, post_pk):
     if request.method == "POST" :
         photo = request.POST["photo"]
+        new_post = Diary.objects.filter(pk=post_pk).update(photo=photo)
+        return redirect("new_post_2", new_post.pk)
+    return render(request, "new_post_1.html")
 
+def new_post_2(request, post_pk):
+    if request.method == "POST" :
+        content = request.POST["content"]
+        new_post = Diary.objects.filter(pk=post_pk).update(content=content)
+        return redirect("new_post_2", new_post.pk)
+    return render(request, "new_post_2.html")
 
 def detail_post(request, post_pk):
     pass
