@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core import serializers
 from django.utils.dateparse import parse_date
+from datetime import date
 
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -22,13 +23,17 @@ def home(request):
 def add_pet(request):
     user = User.objects.get(username=request.user)
     if request.method == "POST":
-        add_pet = Pet.objects.create(
+        new_pet = Pet.objects.create(
             owner = user,
             profile_img = request.FILES["profile_img"],
             name = request.POST["name"],
             birth = request.POST["birth"],
             introduction = request.POST.get("introduction"),
         )
+
+        if new_pet.species == 'C':
+            after_birth = date.today() - date(new_pet.birth)
+
         return redirect("home")
     return render(request, "add_pet.html")
 
@@ -50,7 +55,10 @@ def new_diary(request, date):
 
 def list_diary(request):
     diarys = Diary.objects.all()
-    return render(request, 'list_diary.html', {'diarys':diarys})
+    datas = []
+    for diary in diarys:
+        datas.append([diary, diary.writer.pets.all().first()])
+    return render(request, 'list_diary.html', {'datas':datas})
 
 
 def login(request):
@@ -100,18 +108,15 @@ def add_tag(request):
     return render(request, 'add_tag.html')
 
 def list_tag(request):
-    user = User.objects.get(username=request.user)
-    return render(request, 'list_tag.html')
-
-def edit_tag(request, tag_pk):
-    tag = Tag.objects.filter(pk=tag_pk)
     if request.method == 'POST':
-        tag.update(
+        user = User.objects.get(username=request.user)
+        new_tag = Tag.objects.create(
             name=request.POST['name'],
-            color=request.POST['color']
+            writer=user
         )
         return redirect('list_tag')
-    return render(request, 'edit_tag.html', {'tag':tag[0]})
+    return render(request, 'list_tag.html')
+
 
 def delete_tag(request, tag_pk):
     tag = Tag.objects.get(pk=tag_pk)
@@ -123,6 +128,7 @@ def day_detail(request, date):
     todos = Todo.objects.filter(date=parse_date(date))
     diary = diary_query[0] if diary_query.count() > 0 else diary_query
     return render(request, 'day_detail.html', {'diary':diary, 'date':date, 'todos':todos})
+
 
 @login_required(login_url='register/login')
 def add_todo(request, date):

@@ -1,18 +1,44 @@
-{% extends 'base.html' %}
+{% extends 'start.html' %}
 {% block css %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'list.css' %}"/> 
 {% endblock css %}
 
 {% block content %}
-<ul class="list_container">
-    {% for diary in diarys %}
-        <li class="list_item">
-            <a href="{% url 'detail_post' diary.pk %}">
-                
-                {{diary.writer}}{{diary.content}}{{diary.uploaded}}
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+<body class="body_container">
+    <br>
+    <ul>
+        <div class="box11">
+            {% for data in datas %}
+                <div class="list_item">
+                    <a href="{% url 'detail_post' data.0.pk %}">
+                        <div>
+                            <div class="nan1">
+                                <div class="pictt">
+                                    <img src="media/{{data.1.profile_img}}" alt="">
+                                </div>
+                            </div>
+                            <div class="nan2">
+                                <br>
+                                {{data.0.uploaded}}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="pet_pic">
+                                <img src="media/{{data.0.photo}}" alt="">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="content_ww">
+                                {{data.0.content}}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <hr /><br>
+            {% endfor %}
+        </div>
+        <br>
+    </ul>
+</body>
 {% endblock content %}
