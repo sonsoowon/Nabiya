@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'detail_post.css' %}"/> 
+{% endblock css %}
+
+{% block content %}
+<div class="emotion">
+    {{post.emotion}} 
+</div>
+<div class="uploaded">
+    {{post.uploaded}}
+</div>
+<div class="photo">
+    <img src='{{post.photo.url}}'>    
+</div>
+<div class="contnet">
+    {{post.content}}    
+</div>
+{% endblock content %}
