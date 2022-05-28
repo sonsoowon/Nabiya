@@ -18,7 +18,7 @@ from django.urls import path
 from app import views
 from django.conf.urls.static import static
 from django.conf import settings
-
+from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,11 +40,11 @@ urlpatterns = [
 
     # 검색 아이콘 클릭 시 연결
     path('search_user', views.search_user, name='search_user'),
-
-    path('register/login', views.login, name='login'), 
-    path('register/signup', views.signup, name='signup'), # 로그인 화면에서 가입하기 버튼 클릭 시 연결
-    path('register/logout', views.logout, name='logout'),
-
+    path('registration/login', views.login, name='login'), 
+    path('registration/signup', views.signup, name='signup'), # 로그인 화면에서 가입하기 버튼 클릭 시 연결
+    path('registration/logout', views.logout, name='logout'),
+    path("accounts/", include("allauth.urls")),
+   
 
 
     

@@ -1,5 +1,10 @@
+from turtle import title
 import re
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib import auth
+from django.views.decorators.csrf import csrf_exempt
+
 from django.contrib.auth.decorators import login_required
 from .models import *
 
@@ -58,11 +63,46 @@ def my_post(request):
 def search_user(request):
     pass
 
-def login(request):
-    pass
+# 로그인 로그아웃 회원가입
+# 로그인 로그아웃 회원가입
+# 로그인 로그아웃 회원가입
 
+@csrf_exempt
+def login(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(
+                request, user, backend="django.contrib.auth.backends.ModelBackend"
+            )
+            # return redirect(request.GET.get("next","/"))
+            return redirect("home")
+        error = "아이디 또는 비밀번호가 틀립니다"
+        return render(request, "registration/login.html", {"error":error})
+
+    return render(request, "registration/login.html")
+
+@csrf_exempt
 def signup(request):
-    pass
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        found_user = User.objects.filter(username=username)
+        if len(found_user):
+            error = "이미 존재하는 아이디입니다"
+            return render(request,"registration/signup.html", {"error":error})
+        new_user = User.objects.create_user(username=username, password=password)
+        auth.login(request, new_user)
+        return redirect("home")
+    return render(request, "registration/signup.html")
 
 def logout(request):
-    pass
+    auth.logout(request)
+
+    return redirect("start")
+
+# 로그인 로그아웃 회원가입
+# 로그인 로그아웃 회원가입
+# 로그인 로그아웃 회원가입
