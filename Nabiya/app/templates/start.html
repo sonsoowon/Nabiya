@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+
+  
+  {% load static %} 
+  <link rel="stylesheet" type="text/css" href="{% static 'app/start.css' %}">
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block css %} {% endblock %}
+  <title>나비야</title>
+  <div class="title">
+  <P>나의 반려동물을 위한 기억 저장소</P>  
+  <p>Nabiya<br>Logo</p>
+  
+  </div>
+</head>
+
+
+<body>
+  <nav id="navbar">
+    <ul class="navbar_menu">
+      <li class="navbar__menu__item"><a href="{% url 'login' %}">로그인</a></li>
+      <li class="navbar__menu__item">
+        <a href="{% url 'signup'%}">회원가입</a>
+      </li>
+
+      
+
+    </ul>
+  </nav>
+  {% block title %} {% endblock %} {% block content %} {% endblock content %}
+</body>
+
+</html>

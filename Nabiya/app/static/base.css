@@ -1,0 +1,14 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    max-width: 350px !important
+}
+
+.topper {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+}

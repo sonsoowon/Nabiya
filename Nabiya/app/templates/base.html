@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    {% block css %}
+
+    {% endblock css %}
+    <title>나비야</title>
+</head>
+<body>
+    <nav class="topper">
+        <div class="pet_select_container">
+            <select class="pet_select_selector">
+                {% for pet in pets %}
+                <option value="{{pet.name}}"></option>
+                {% endfor %}
+                <option value="새 반려동물 등록하기"></option>
+            </select>
+        </div>
+        <div class="icon_container">
+        </div>
+    </nav>
+    {% block content %}
+
+    {% endblock content %}
+</body>
+</html>

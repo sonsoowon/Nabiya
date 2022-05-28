@@ -1,0 +1,20 @@
+{% extends 'start.html' %} {% block css %} {% load static %}
+
+
+
+<section id="signup">
+    <form method="POST">
+        {% csrf_token %} 
+        {% if error %}
+        <p>{{error}}</p>
+        {% endif %}
+        <div>
+        <input type="text" name="username" placeholder="이메일" />
+        <input type="password" name="password" placeholder="비밀번호" />
+        </div>
+        <div>
+        <button>회원가입</button>
+        </div>
+    </form>
+</section>
+{% endblock %}
