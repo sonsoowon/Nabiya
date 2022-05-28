@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+
+  {% block css %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'app/home.css' %}">
+  {% endblock %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  {% block title %}
+  <div class="title">
+  <P>나의 반려동물을 위한 기억 저장소</P>  
+  <p>Nabiya<br>Logo</p>
+  {% endblock %}
+  </div>
+</head>
+
+{% block content %}
+<body>
+    <div>
+        <button class="navbar_menu_item" href="{% url 'login'%}">로그인</button>
+        <button class="navbar_menu_item" href="{% url 'signup'%}">회원가입</button>
+    </div>
+</body>
+{% endblock content %}
+</html>
