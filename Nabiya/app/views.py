@@ -58,7 +58,10 @@ def detail_post(request, post_pk):
 
 def list_diary(request):
     diarys = Diary.objects.all()
-    return render(request, 'list_diary.html', {'diarys':diarys})
+    datas = []
+    for diary in diarys:
+        datas.append([diary, diary.writer.pets.all().first()])
+    return render(request, 'list_diary.html', {'datas':datas})
 
 
 def login(request):
