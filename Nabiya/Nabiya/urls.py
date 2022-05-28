@@ -28,7 +28,6 @@ urlpatterns = [
 
 
     path('new_diary/<str:date>', views.new_diary, name='new_diary'),
-    path('detail_post/<int:post_pk>', views.detail_post, name='detail_post'),
     path('list_diary', views.list_diary, name='list_diary'),
 
     path('register/login', views.login, name='login'), 

@@ -1,37 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="{% url 'add_todo' date %}">할일 등록</a>
-    
-    {% for todo in todos %}
-    <p>{{todo.tag.name}}</p>
-    <a href="{% url 'delete_todo' todo.pk date %}">삭제</a>
-    {% endfor %}
+{% extends 'base.html' %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'day_detail.css' %}"/> 
+{% endblock css %}
 
-    {% if diary.count == 0 %}
-    <a href="{% url 'new_diary' date %}">일기 쓰기</a>
-    {% else %}
+{% block content %}
+<div class="todo_link_box">
+    <a href="{% url 'add_todo' date %}" class="link">할일 등록</a>
+</div>    
+{% for todo in todos %}
+<p>{{todo.tag.name}}</p>
+<a href="{% url 'delete_todo' todo.pk date %}">삭제</a>
+{% endfor %}
+
+{% if diary.count == 0 %}
+<a href="{% url 'new_diary' date %}" class="link">일기 쓰기</a>
+<div class="ct_bx">
+    <div class="ct">
+        <img src="{% static 'media/logo.png'%}">
+    </div>
+</div>
+<div class="ment">
+    <p>오늘의 일기를 작성하세요!</p>
+</div>
+{% else %}
+<div class="emotion_box">
     <div class="emotion">
-        {{diary.emotion}} 
+        <img src='{{diary.emotion.emoji.url}}'>
     </div>
-    <div class="uploaded">
-        {{diary.uploaded}}
-    </div>
+</div>
+<div class="uploaded">
+    {{diary.uploaded}}
+</div>
+<div class="photo_box">
     <div class="photo">
         <img src='{{diary.photo.url}}'>    
     </div>
-    <div class="contnet">
-        {{diary.content}}    
-    </div>
-    <a href="{% url 'home' %}">홈으로</a>
-    <a href="{% url 'list_post' %}">리스트로</a>
-    
-    {% endif %}
-</body>
-</html>
+</div>
+<div class="content">
+    {{diary.content}}    
+</div>
+<a class=link href="{% url 'home' %}">홈으로</a>
+
+{% endif %}
+{% endblock content %}
