@@ -1,14 +1,13 @@
 * {
     padding: 0px;
     margin: 0px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 500;
 }
 
-body {
-    max-width: 350px !important
+.body_container {
+    width:360px;
+    height:800px;
+    background-color: white;
 }
 
-.topper {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 30px;
-}

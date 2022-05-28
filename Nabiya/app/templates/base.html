@@ -6,26 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500&display=swap" rel="stylesheet">
     {% block css %}
 
     {% endblock css %}
     <title>나비야</title>
 </head>
 <body>
-    <nav class="topper">
-        <div class="pet_select_container">
-            <select class="pet_select_selector">
-                {% for pet in pets %}
-                <option value="{{pet.name}}"></option>
-                {% endfor %}
-                <option value="새 반려동물 등록하기"></option>
-            </select>
-        </div>
-        <div class="icon_container">
-        </div>
-    </nav>
+<div class=body_container>
     {% block content %}
 
     {% endblock content %}
+</div>
 </body>
 </html>
