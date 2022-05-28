@@ -2,6 +2,7 @@ from turtle import title
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -45,6 +46,7 @@ def search_user(request):
 # 로그인 로그아웃 회원가입
 # 로그인 로그아웃 회원가입
 
+@csrf_exempt
 def login(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -61,6 +63,7 @@ def login(request):
 
     return render(request, "registration/login.html")
 
+@csrf_exempt
 def signup(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -71,7 +74,7 @@ def signup(request):
             return render(request,"registration/signup.html", {"error":error})
         new_user = User.objects.create_user(username=username, password=password)
         auth.login(request, new_user)
-        return redirect("list_page")
+        return redirect("home")
     return render(request, "registration/signup.html")
 
 def logout(request):

@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'imagekit',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -53,6 +52,7 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+
 LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [

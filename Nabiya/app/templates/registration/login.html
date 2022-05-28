@@ -1,4 +1,4 @@
-{% extends 'app/base.html' %} {% block css %} {% load static %}
+{% extends 'app/start.html' %} {% block css %} {% load static %}
 <link rel = "stylesheet" type="text/css" href="{% static 'login.css' %}" />
 {% endblock css %} {% block content %}
 
@@ -14,7 +14,6 @@
             </div>
             <div>
             <button>로그인</button>
-            <button>카카오 로그인</button>
             </div>
         </div>
     </form>
