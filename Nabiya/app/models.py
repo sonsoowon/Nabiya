@@ -36,6 +36,7 @@ class Pet(models.Model):
     name = models.CharField(max_length=50)
     profile_img = models.ImageField(upload_to=profile_directory_path)
     birth = models.DateField(default=now)
+    introdution = models.CharField(max_length=100)
 
     class Meta:
         unique_together = (('owner', 'name'))
