@@ -16,21 +16,23 @@ def new_post_0(request):
     return render(request, 'new_post_0.html')
 
 def new_post_1(request, post_pk):
+    new_post = Diary.objects.fliter(pk=post_pk)
     if request.method == "POST" :
         photo = request.POST["photo"]
         new_post = Diary.objects.filter(pk=post_pk).update(photo=photo)
         return redirect("new_post_2", new_post.pk)
-    return render(request, "new_post_1.html")
+    return render(request, "new_post_1.html", {'post' : new_post})
 
 def new_post_2(request, post_pk):
     if request.method == "POST" :
         content = request.POST["content"]
         new_post = Diary.objects.filter(pk=post_pk).update(content=content)
-        return redirect("new_post_2", new_post.pk)
+        return redirect("detail", new_post.pk)
     return render(request, "new_post_2.html")
 
 def detail_post(request, post_pk):
-    pass
+    post = Diary.objects.get(pk=post_pk)
+
 
 @login_required(login_url='register/login')
 def mypage(request):

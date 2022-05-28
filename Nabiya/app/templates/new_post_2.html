@@ -6,15 +6,16 @@
 
 {% block content %}
 <div class="emotion">
-    {{  }} 
+    {{post.emotion}} 
 </div>
 <div class="uploaded">
-    {{  }}
+    {{post.uploaded}}
 </div>
-    {% for photo in Diary %}
-        <img src="{{}}">
-    {% endfor %}
+<div class="photo">
+    {{post.photo}}    
+</div>
 <form method="POST">
+    {% csrf_token %}
     <textarea name="content" placeholder="내용을 작성하세요."></textarea>
     <button type="submit">
         완료

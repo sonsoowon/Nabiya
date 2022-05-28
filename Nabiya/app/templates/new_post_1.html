@@ -5,13 +5,13 @@
 {% endblock css %}
 
 {% block content %}
-<div class="emotion">
-    
-</div>
+
 <div class="uploaded">
-    
+    {{post.uploaded}}
 </div>
 <form method="POST" name="photo">
+    {% csrf_token %}
     <input type="file" name="photo">
+    
 </form>
 {% endblock content %}
