@@ -65,7 +65,6 @@ class Diary(models.Model):
     uploaded = models.DateField(auto_now_add=True)
     photo = models.ImageField(upload_to=photo_directory_path)
     content = models.TextField(max_length=100)
-    tags = models.ManyToManyField(Tag, related_name="diarys")
 
 
 class Post(models.Model):

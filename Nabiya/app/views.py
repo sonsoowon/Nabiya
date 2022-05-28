@@ -8,8 +8,12 @@ from .models import *
 def home(request):
     pass
 
-def new_post(request):
-    pass
+def new_post_0(request):
+    
+def new_post_1(request):
+    if request.method == "POST" :
+        photo = request.POST["photo"]
+
 
 def detail_post(request, post_pk):
     pass
