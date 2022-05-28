@@ -9,13 +9,12 @@ def home(request):
     pass
 
 
-def new_post_1(request, post_pk):
-    new_post = Diary.objects.fliter(pk=post_pk)
+def new_post_1(request):
     if request.method == "POST" :
         photo = request.POST["photo"]
-        new_post = Diary.objects.create(writer=request.user, pet=request.pet, photo=photo)
+        new_post = Diary.objects.create(photo=photo)
         return redirect("new_post_2", new_post.pk)
-    return render(request, "new_post_1.html", {'post' : new_post})
+    return render(request, "new_post_1.html")
 
 def new_post_2(request, post_pk):
     if request.method == "POST" :

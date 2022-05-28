@@ -1,16 +1,14 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 {% block css %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'new_post_1.css %}"/> 
 {% endblock css %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'new_post_1.css' %}" /> 
 
-<div class="uploaded">
-    {{post.uploaded}}
-</div>
 <form method="POST" name="photo">
     {% csrf_token %}
     <input type="file" name="photo">
+    <button type="submit">사진 등록</button>
 </form>
 {% endblock content %}
