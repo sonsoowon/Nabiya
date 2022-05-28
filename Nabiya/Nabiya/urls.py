@@ -36,8 +36,6 @@ urlpatterns = [
 
     
     path('list_tag', views.list_tag, name='list_tag'),
-    path('add_tag', views.add_tag, name='add_tag'),
-    path('edit_tag/<int:tag_pk>', views.edit_tag, name='edit_tag'),
     path('delete_tag/<int:tag_pk>', views.delete_tag, name='delete_tag'),
 
     path('add_todo/<str:date>', views.add_todo, name='add_todo'),
