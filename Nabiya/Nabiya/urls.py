@@ -25,8 +25,7 @@ urlpatterns = [
 
     path('', views.home, name='home'), # 첫 달력화면
     path('list/', views.list, name='list'),
-    path('new_post/', views.new_post_1, name='new_post_1'),
-    path('new_post/<int:post_pk>', views.new_post_2, name='new_post_2'),
+    path('new_post/', views.new_post_2, name='new_post_2'),
 
     path('detail_post/<int:post_pk>', views.detail_post, name='detail_post'),
     

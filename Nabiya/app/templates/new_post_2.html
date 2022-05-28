@@ -6,24 +6,24 @@
 
 {% block content %}
 
-<div class="uploaded">
-    {{post.uploaded}}
-</div>
-<figure class="photo">
-    <img src='{{post.photo.url}}'>    
-</figure>
 <form method="POST">
     {% csrf_token %}
+    <div class="filebox preview-image">
+        <input class="upload-name" value="파일 선택..." disabled="disabled">
+        <label for="input-file">업로드</label> 
+        <input type="file" id="input-file" class="upload-hidden"> 
+        <script src="new_post.js"></script>
+    </div>
     <label>
-        <input type="radio" name="emotion" value=1>
+        <input type="radio" name="emotion" value="H">
         행복했어요 ^o^
     </label>
     <label>
-        <input type="radio" name="emotion" value=2>
+        <input type="radio" name="emotion" value="S">
         슬펐어요 T^T
     </label>
     <label>
-        <input type="radio" name="emotion" value=3>
+        <input type="radio" name="emotion" value="A">
         화가 났어요 -_-
     </label>
     <textarea name="content" placeholder="내용을 작성하세요."></textarea>

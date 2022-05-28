@@ -7,27 +7,20 @@ from django.utils.timezone import now
 # Create your models here.
 
 class Emotion(models.Model):
-
     EMOTIONS = (
-
         ('H', 'happy'),
         ('S', 'sad'),
         ('A', 'angry')
     )
     status = models.CharField(max_length=1, choices=EMOTIONS)
-    # emoji = models.ImageField(upload_to="emoji/")
 
     def __str__(self):
         return self.status
 
 # 동물 프로필 이미지 저장 경로 설정
-def profile_directory_path(instance, filename):
+def profile_directory_path(user, filename):
     # file will be uploaded to MEDIA_ROOT/post/user_<id>/<filename>
-    return 'pet_profile/user_{0}/{1}'.format(instance.user.id, filename)
-
-def profile_directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/post/user_<id>/<filename>
-    return 'pet_profile/user_{0}/{1}'.format(instance.user.id, filename)
+    return 'pet_profile/user_{0}/{1}'.format(user.id, filename)
 
 class Pet(models.Model):
     SPECIES = (

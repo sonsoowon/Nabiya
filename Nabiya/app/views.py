@@ -10,21 +10,15 @@ def home(request):
     pass
 
 
-def new_post_1(request):
-    if request.method == "POST" :
-        photo=request.FILES.get("photo")
-        new_post = Diary.objects.create(photo=photo)
-        return redirect("new_post_2", new_post.pk)
-    return render(request, "new_post_1.html")
 
-def new_post_2(request, post_pk):
-    post = Diary.objects.get(pk=post_pk)
+def new_post_2(request):
     if request.method == "POST" :
         emotion = request.POST["emotion"]
         content = request.POST["content"]
-        Diary.objects.filter(pk=post_pk).update(content=content, emotion=emotion)
-        return redirect("detail_post", post_pk)
-    return render(request, "new_post_2.html", {"post" : post})
+        photo = request.FILES.get("photo")
+        new_post = Diary.objects.create(content=content, emotion=emotion, photo=photo)
+        return redirect("detail_post", new_post.pk)
+    return render(request, "new_post_2.html")
 
 def detail_post(request, post_pk):
     post = Diary.objects.get(pk=post_pk)
