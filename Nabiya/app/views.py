@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core import serializers
 from django.utils.dateparse import parse_date
+from datetime import date
 
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -23,7 +24,7 @@ def home(request):
 def add_pet(request):
     user = User.objects.get(username=request.user)
     if request.method == "POST":
-        add_pet = Pet.objects.create(
+        new_pet = Pet.objects.create(
             owner = user,
             profile_img = request.FILES["profile_img"],
             name = request.POST["name"],
@@ -31,6 +32,10 @@ def add_pet(request):
             introduction = request.POST["introduction"],
             species = request.POST["type"]
         )
+
+        if new_pet.species == 'C':
+            after_birth = date.today() - date(new_pet.birth
+
         return redirect("home")
     return render(request, "add_pet.html")
 
@@ -58,7 +63,10 @@ def detail_post(request, post_pk):
 
 def list_diary(request):
     diarys = Diary.objects.all()
-    return render(request, 'list_diary.html', {'diarys':diarys})
+    datas = []
+    for diary in diarys:
+        datas.append([diary, diary.writer.pets.all().first()])
+    return render(request, 'list_diary.html', {'datas':datas})
 
 
 def login(request):
