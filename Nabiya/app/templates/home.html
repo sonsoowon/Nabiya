@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="{% static 'home.css' %}"/>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
@@ -14,14 +14,14 @@
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
   </head>
   <body>
-    <div>
-      <a href="{% url 'list_tag' %}">태그 등록</a>
-      <a href="{% url 'list_diary' %}">일기 목록</a>
-    </div>
-    <h1></h1>
     <div class="container">
+      <div class="navbar">
+        <a href="{% url 'list_tag' %}"><button>태그 등록</button></a>
+        <a href="{% url 'list_diary' %}"><button>일기 목록</button></a>
+      </div>
       <div class="calendar">
         <div class="month">
           <i class="fas fa-angle-left prev"></i>

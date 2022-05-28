@@ -42,7 +42,6 @@ class Pet(models.Model):
 class Tag(models.Model):
     writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tags")
     name = models.CharField(max_length=30)
-    color = models.CharField(max_length=7)
     
     def __str__(self):
         return self.name
