@@ -5,9 +5,7 @@
 {% endblock css %}
 
 {% block content %}
-<div class="emotion">
-    {{post.emotion}} 
-</div>
+
 <div class="uploaded">
     {{post.uploaded}}
 </div>
@@ -16,6 +14,18 @@
 </div>
 <form method="POST">
     {% csrf_token %}
+    <label>
+        <input type="radio" name="emotion" value="H">
+        행복했어요 ^o^
+    </label>
+    <label>
+        <input type="radio" name="emotion" value="S">
+        슬펐어요 T^T
+    </label>
+    <label>
+        <input type="radio" name="emotion" value="A">
+        화가 났어요 -_-
+    </label>
     <textarea name="content" placeholder="내용을 작성하세요."></textarea>
     <button type="submit">
         완료
