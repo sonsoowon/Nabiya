@@ -7,7 +7,12 @@
 {% block content %}
 <ul class="list_container">
     {% for post in posts %}
-        <li class="list_item"><img src="{{post.photo.url}}">{{post.writer}}{{post.content}}</li>
+        <li class="list_item">
+            <a href="{{url 'detail_post' post.pk}}">
+                <img src="{{post.photo.url}}">
+                {{post.writer}}{{post.content}}{{post.uploaded}}
+            </a>
+        </li>
     {% endfor %}
 </ul>
 {% endblock content %}
