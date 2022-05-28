@@ -16,13 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', views.home, name='home'), # 첫 달력화면
-
-    path('new_post', views.new_post_1, name='new_post_1'),
+    path('list/', views.list, name='list'),
+    path('new_post/', views.new_post_1, name='new_post_1'),
     path('new_post/<int:post_pk>', views.new_post_2, name='new_post_2'),
 
     path('detail_post/<int:post_pk>', views.detail_post, name='detail_post'),
@@ -40,8 +43,11 @@ urlpatterns = [
 
     path('register/login', views.login, name='login'), 
     path('register/signup', views.signup, name='signup'), # 로그인 화면에서 가입하기 버튼 클릭 시 연결
-    path('register/logout', views.logout, name='logout')
+    path('register/logout', views.logout, name='logout'),
+
 
 
     
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -8,14 +8,14 @@ from django.utils.timezone import now
 
 class Emotion(models.Model):
     EMOTIONS = (
-        ('H', 'happy'),
-        ('S', 'sad'),
-        ('A', 'angry')
+        ("H", 'happy'),
+        ("S", 'sad'),
+        ("A", 'angry')
     )
     
 
     status = models.CharField(max_length=1, choices=EMOTIONS)
-    emoji = models.ImageField(upload_to="emoji/")
+    # emoji = models.ImageField(upload_to="emoji/")
 
     def __str__(self):
         return self.status
@@ -54,17 +54,17 @@ class Tag(models.Model):
 
 
 
-def photo_directory_path(instance, filename):
+def photo_directory_path(writer, filename):
     # file will be uploaded to MEDIA_ROOT/post/user_<id>/<filename>
-    return 'diary/user_{0}/{1}'.format(instance.user.id, filename)
+    return 'diary/user_{0}/{1}'.format(writer.pk, filename)
 
 class Diary(models.Model):
-    writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
-    pet = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name="posts")
-    emotion = models.ForeignKey(Emotion, on_delete=models.CASCADE, related_name="posts")
+    writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts", null=True)
+    pet = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name="posts", null=True)
+    emotion = models.ForeignKey(Emotion, on_delete=models.CASCADE, related_name="posts", null=True)
     uploaded = models.DateField(auto_now_add=True)
-    photo = models.ImageField(upload_to=photo_directory_path)
-    content = models.TextField(max_length=100)
+    photo = models.ImageField(upload_to=photo_directory_path, blank=True, null=True)
+    content = models.TextField(max_length=100, null=True)
 
 
 class Post(models.Model):

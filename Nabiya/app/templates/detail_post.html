@@ -1,7 +1,7 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 {% block css %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'detail_post.css %}"/> 
+<link rel="stylesheet" type="text/css" href="{% static 'detail_post.css' %}"/> 
 {% endblock css %}
 
 {% block content %}
@@ -12,7 +12,7 @@
     {{post.uploaded}}
 </div>
 <div class="photo">
-    {{post.photo}}    
+    <img src='{{post.photo.url}}'>    
 </div>
 <div class="contnet">
     {{post.content}}    
