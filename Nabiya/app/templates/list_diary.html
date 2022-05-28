@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'start.html' %}
 {% block css %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'list.css' %}"/> 
@@ -6,6 +6,7 @@
 
 {% block content %}
 <body class="body_container">
+    <br>
     <ul>
         <div class="box11">
             {% for data in datas %}
@@ -34,7 +35,7 @@
                         </div>
                     </a>
                 </div>
-                <hr />
+                <hr /><br>
             {% endfor %}
         </div>
         <br>
