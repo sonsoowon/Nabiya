@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'list.css' %}"/> 
+{% endblock css %}
+
+{% block content %}
+<ul class="list_container">
+    {% for post in posts %}
+        <li class="list_item">
+            <a href="{{url 'detail_post' post.pk}}">
+                <img src="{{post.photo.url}}">
+                {{post.writer}}{{post.content}}{{post.uploaded}}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock content %}
