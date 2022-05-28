@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from app import views
 
 urlpatterns = [
@@ -22,26 +24,26 @@ urlpatterns = [
 
     path('', views.start, name='start'),
     path('home', views.home, name='home'), # 첫 달력화면
+    path('add_pet', views.add_pet, name='add_pet'),
 
-    path('new_post_1', views.new_post_1, name='new_post_1'),
-    path('new_post_2', views.new_post_2, name='new_post_2'),
+    path('new_diary/<str:date>', views.new_diary, name='new_diary'),
     path('detail_post/<int:post_pk>', views.detail_post, name='detail_post'),
-    
-    path('mypage', views.mypage, name='mypage'), # home 화면 오른쪽 상단 아이콘 클릭 시 연결
-    
-    path('mypage/following', views.list_following, name='list_following'), # 내가 팔로우하는 사용자 목록
-    path('mypage/follower', views.list_follower, name='list_follower'), # 나를 팔로우하는 사용자 목록
-    path('follow/<int:user_pk>', views.follow, name='follow'), # 다른 사용자 팔로우 버튼 클릭 시 연결
-
-    #path('my_post', views.my_posts, name='my_post'), # 내가 쓴 일기 목록
-    path('add_pet', views.add_pet, name='add_pet'), # 처음 펫 추가
-    path('add_another_pet', views.add_another_pet, name='add_another_pet'), # 처음 이후 새로운 펫 추가
-
-    # 검색 아이콘 클릭 시 연결
-    path('search_user', views.search_user, name='search_user'),
+    path('list_diary', views.list_diary, name='list_diary'),
 
     path('register/login', views.login, name='login'), 
     path('register/signup', views.signup, name='signup'), # 로그인 화면에서 가입하기 버튼 클릭 시 연결
-    path('register/logout', views.logout, name='logout')
+    path('register/logout', views.logout, name='logout'),
+
     
+    path('list_tag', views.list_tag, name='list_tag'),
+    path('add_tag', views.add_tag, name='add_tag'),
+    path('edit_tag/<int:tag_pk>', views.edit_tag, name='edit_tag'),
+    path('delete_tag/<int:tag_pk>', views.delete_tag, name='delete_tag'),
+
+    path('add_todo/<str:date>', views.add_todo, name='add_todo'),
+    path('delete_todo/<int:todo_pk>/<str:date>', views.delete_todo, name='delete_todo'),
+
+    path('day_detail/<str:date>', views.day_detail, name='day_detail')
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

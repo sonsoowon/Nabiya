@@ -84,9 +84,9 @@ const renderCalendar = () => {
     
     if (diary_idx != -1) {
       console.log(diarys_info['pk'][diary_idx]);
-      days += `<div><a href='detail_post/${diarys_info['pk'][diary_idx]}'>${i}</a></div>`
+      days += `<div><a href='day_detail/${date_str}'>${i}</a></div>`
     } else {
-      days += `<div><a href='new_post'>${i}</a></div>`;
+      days += `<div><a href='day_detail/${date_str}'>${i}</a></div>`;
     }
 
   }

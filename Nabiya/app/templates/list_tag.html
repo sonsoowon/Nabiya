@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{% url 'add_tag' %}">태그 추가</a>
+    {% for tag in user.tags.all %}
+    <a href="{% url 'edit_tag' tag.pk %}">
+        <div>
+            {{tag.name}}
+            {{tag.color}}
+        </div>
+    </a>
+    <a href="{% url 'delete_tag' tag.pk %}">삭제</a>
+    
+    {% endfor %}
+</body>
+</html>

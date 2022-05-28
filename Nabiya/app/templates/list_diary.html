@@ -6,11 +6,11 @@
 
 {% block content %}
 <ul class="list_container">
-    {% for post in posts %}
+    {% for diary in diarys %}
         <li class="list_item">
-            <a href="{{url 'detail_post' post.pk}}">
-                <img src="{{post.photo.url}}">
-                {{post.writer}}{{post.content}}{{post.uploaded}}
+            <a href="{% url 'detail_post' diary.pk %}">
+                
+                {{diary.writer}}{{diary.content}}{{diary.uploaded}}
             </a>
         </li>
     {% endfor %}

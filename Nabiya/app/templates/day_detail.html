@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{% url 'add_todo' date %}">할일 등록</a>
+    
+    {% for todo in todos %}
+    <p>{{todo.tag.name}}</p>
+    <a href="{% url 'delete_todo' todo.pk date %}">삭제</a>
+    {% endfor %}
+
+    {% if diary.count == 0 %}
+    <a href="{% url 'new_post' date %}">일기 쓰기</a>
+    {% else %}
+    <div class="emotion">
+        {{diary.emotion}} 
+    </div>
+    <div class="uploaded">
+        {{diary.uploaded}}
+    </div>
+    <div class="photo">
+        <img src='{{diary.photo.url}}'>    
+    </div>
+    <div class="contnet">
+        {{diary.content}}    
+    </div>
+    <a href="{% url 'home' %}">홈으로</a>
+    <a href="{% url 'list_post' %}">리스트로</a>
+    
+    {% endif %}
+</body>
+</html>
