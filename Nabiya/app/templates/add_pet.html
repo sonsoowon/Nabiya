@@ -1,42 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'start.html' %} {% block css %} {% load static %}
+<link rel = "stylesheet" type="text/css" href="{% static 'add_pet.css' %}" />
+{% endblock css %} {% block title %} {% endblock title %}
 
-<head>
-  {% block css %}
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'app/add_another_pet.css' %}">
-  {% endblock %}
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  {% block title %}
-  <div class="title">
-  <P>나의 귀여운 반려동물을 소개해주세요!</P>  
-  {% endblock %}
-  </div>
-</head>
 
 {% block content %}
 <body>
-  <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <a href="{% url 'home' %}'">뒤로가기</a>
-    
-    <input type="file" id="profile_img" name="profile_img" accept=".jpg, .jpeg, .png">
-    <div>
-        <label for="man">강아지</label>
-        <input type="radio" name="type" value="D" id="dog">
-        <label for="woman">고양이</label>
-        <input type="radio" name="type" value="C" id="cat">
-    </div>
-    <div>
-        이름<input type="text" id="name" name="name" maxlength="50">
-        태어난 날<input type="date" id="birth" name="birth">
-        한줄 소개<input type="text" id="introduction" name="introduction">
-    </div>
-    <button type="submit">submit</button>
-  </form>
+  <div class="body_container">
+    <form action="" method="post">
+      {% csrf_token %}
+      <a href="{% url 'signup' %}" id="arrow"><i class="fa-solid fa-arrow-left"></i></a><br>
+      <P id="title">나의 귀여운 반려동물을 소개해주세요!</P>  
+      <div class="file">
+        <label class="input-file" for="input-file">업로드</label><input type="file" id="profile_img" name="profile_img"/><br>
+        <div class="selection">
+          <br>
+            <input type="radio" name="type" value="d" id="dog"><label for="man">강아지</label>
+            <input type="radio" name="type" value="c" id="cat"><label for="woman">고양이</label>
+        </div>
+        <br>
+        <div>
+            <h3>이름</h3> <input type="text" id="name" name="name" maxlength="50"><br><br>
+            <h3>태어난 날</h3><input type="date" id="birth" name="birth"><br><br>
+            <h3>종류</h3><input type="text" id="species" name="species"><br><br>
+            <h3>한줄 소개</h3><textarea cols="30" rows="3"></textarea>
+        <button type="submit">submit</a>
+      </div>
+    </form>
+  </div>
 </body>
 {% endblock content %}
 </html>
