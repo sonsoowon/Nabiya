@@ -32,6 +32,8 @@ urlpatterns = [
     path('follow/<int:user_pk>', views.follow, name='follow'), # 다른 사용자 팔로우 버튼 클릭 시 연결
 
     path('my_post', views.my_posts, name='my_post'), # 내가 쓴 일기 목록
+    path('add_pet', views.add_pet, name='add_pet'), # 처음 펫 추가
+    path('add_another_pet', views.add_another_pet, name='add_another_pet'), # 처음 이후 새로운 펫 추가
 
     # 검색 아이콘 클릭 시 연결
     path('search_user', views.search_user, name='search_user'),
