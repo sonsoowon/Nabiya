@@ -38,8 +38,8 @@ urlpatterns = [
 
     path('register/login', views.login, name='login'), 
     path('register/signup', views.signup, name='signup'), # 로그인 화면에서 가입하기 버튼 클릭 시 연결
-    path('register/logout', views.logout, name='logout')
-
+    path('register/logout', views.logout, name='logout'),
+    path("accounts/", include("alluath.urls")),
 
     
 ]
