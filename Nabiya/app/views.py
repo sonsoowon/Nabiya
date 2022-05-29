@@ -5,11 +5,13 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core import serializers
 from django.utils.dateparse import parse_date
-from datetime import date
 
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .models import *
 import json
+
+import datetime 
 # Create your views here.
 
 def start(request):
@@ -17,7 +19,8 @@ def start(request):
 
 @login_required(login_url='register/login')
 def home(request):
-    diarys = serializers.serialize("json", Diary.objects.all())
+    writer = User.objects.get(username=request.user)
+    diarys = serializers.serialize("json", Diary.objects.filter(writer=writer))
     return render(request, 'home.html', {'diarys':diarys})
 
 def add_pet(request):
@@ -30,10 +33,6 @@ def add_pet(request):
             birth = request.POST["birth"],
             introduction = request.POST.get("introduction"),
         )
-
-        if new_pet.species == 'C':
-            after_birth = date.today() - date(new_pet.birth)
-
         return redirect("home")
     return render(request, "add_pet.html")
 
@@ -124,8 +123,9 @@ def delete_tag(request, tag_pk):
     return redirect('list_tag')
 
 def day_detail(request, date):
-    diary_query = Diary.objects.filter(uploaded=parse_date(date))
-    todos = Todo.objects.filter(date=parse_date(date))
+    user = User.objects.get(username=request.user)
+    diary_query = Diary.objects.filter(uploaded=parse_date(date), writer=user)
+    todos = Todo.objects.filter(date=parse_date(date), writer=user)
     diary = diary_query[0] if diary_query.count() > 0 else diary_query
     return render(request, 'day_detail.html', {'diary':diary, 'date':date, 'todos':todos})
 
