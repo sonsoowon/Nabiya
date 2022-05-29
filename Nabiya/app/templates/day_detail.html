@@ -7,11 +7,16 @@
 {% block content %}
 <div class="todo_link_box">
     <a href="{% url 'add_todo' date %}" class="link">할일 등록</a>
-</div>    
-{% for todo in todos %}
-<p>{{todo.tag.name}}</p>
-<a href="{% url 'delete_todo' todo.pk date %}">삭제</a>
-{% endfor %}
+</div>
+
+<div class="todo_container">
+    {% for todo in todos %}
+    <div class="todo_item">
+        <p>{{todo.tag.name}}</p>
+        <a href="{% url 'delete_todo' todo.pk date %}"><i class="fa-solid fa-x"></i></a>
+    </div>
+    {% endfor %}
+</div>
 
 {% if diary.count == 0 %}
 <a href="{% url 'new_diary' date %}" class="link">일기 쓰기</a>
