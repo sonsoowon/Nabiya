@@ -53,7 +53,8 @@ def new_diary(request, date):
 
 
 def list_diary(request):
-    diarys = Diary.objects.all()
+    user = User.objects.get(username=request.user)
+    diarys = Diary.objects.filter(writer=user)
     datas = []
     for diary in diarys:
         datas.append([diary, diary.writer.pets.all().first()])
