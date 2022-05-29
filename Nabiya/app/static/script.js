@@ -68,23 +68,19 @@ const renderCalendar = () => {
   }
   
   let date_str = year_month;
-  console.log(diarys_info['date'])
 
   for (let i = 1; i <= lastDay; i++) {
     
     if (i < 10 ){
       date_str = year_month + "-0" + i;
     } else {
-      date_str = year_month + "-" + i
+      date_str = year_month + "-" + i;
     }
 
-    console.log(date_str);
-
     let diary_idx = diarys_info['date'].indexOf(date_str);
-    
+
     if (diary_idx != -1) {
-      console.log(diarys_info['pk'][diary_idx]);
-      days += `<div><a href='day_detail/${date_str}'>${i}</a></div>`
+      days += `<div class='diary_exists'><a href='day_detail/${date_str}'>${i}</a></div>`;
     } else {
       days += `<div><a href='day_detail/${date_str}'>${i}</a></div>`;
     }

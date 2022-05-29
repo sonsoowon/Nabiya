@@ -131,6 +131,15 @@ html {
   transition: background-color 0.2s;
 }
 
+.diary_exists {
+  border: 2px solid #c0c2ff;
+  border-radius: 5rem;
+}
+
+.diary_exists a{
+  color: purple;
+}
+
 .days div:hover:not(.today) {
   background-color: #c0c2ff;
   cursor: pointer;
